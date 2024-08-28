@@ -69,7 +69,7 @@ export const UpdateModal = ({ showModal, setShowModal, eventData, setEventData, 
     }
   
     try {
-      const response = await fetch(`http://localhost:8080/api/events/${eventId}`, {
+      const response = await fetch(`chirags-event-backend-production.up.railway.app/api/events/${eventId}`, {
           method: 'PUT',
           body: formData
       });

@@ -55,7 +55,7 @@ export const Register = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await fetch('http://localhost:8080/api/auth/register', {
+      const response = await fetch('chirags-event-backend-production.up.railway.app/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
