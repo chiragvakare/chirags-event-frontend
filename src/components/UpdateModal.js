@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "./Modal.css";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import "./Modal.css"; // Ensure this file exists with the styles
 
-export const Modal = ({ showModal, setShowModal, userId }) => {
-  const [eventData, setEventData] = useState({
+export const UpdateModal = ({ showModal, setShowModal, eventData, setEventData, eventId }) => {
+  const [updatedEventData, setUpdatedEventData] = useState({
     name: '',
     description: '',
     date: '',
@@ -14,72 +14,85 @@ export const Modal = ({ showModal, setShowModal, userId }) => {
     userId: localStorage.getItem('userId')
   });
 
+  useEffect(() => {
+    if (eventData) {
+      setUpdatedEventData({
+        ...eventData,
+        imageUrl: null // Reset imageUrl to avoid conflicts
+      });
+    }
+  }, [eventData]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEventData({
-      ...eventData,
+    setUpdatedEventData({
+      ...updatedEventData,
       [name]: value
     });
   };
 
   const handleImage = (e) => {
-    const { name } = e.target;
-    const value = e.target.files[0];
-    setEventData({
-      ...eventData,
-      [name]: value
+    const file = e.target.files[0];
+    console.log('Selected file:', file); // Debugging statement
+    setUpdatedEventData({
+      ...updatedEventData,
+      imageUrl: file
     });
   };
 
-  const handleCKEditorChange = (event, editor) => {
+  const handleEditorChange = (event, editor) => {
     const data = editor.getData();
-    setEventData({
-      ...eventData,
+    setUpdatedEventData({
+      ...updatedEventData,
       description: data
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+  
     const formData = new FormData();
-    formData.append("event", new Blob([JSON.stringify({
-        name: eventData.name,
-        description: eventData.description,
-        date: eventData.date,
-        location: eventData.location,
-        category: eventData.category,
-        userId: eventData.userId
+    formData.append("eventDto", new Blob([JSON.stringify({
+        name: updatedEventData.name,
+        description: updatedEventData.description,
+        date: updatedEventData.date,
+        location: updatedEventData.location,
+        category: updatedEventData.category,
+        userId: updatedEventData.userId
     })], {
         type: "application/json"
     }));
-    
-    formData.append("file", eventData.imageUrl);
-
-    try {
-        const response = await fetch(`http://localhost:8080/api/events/${localStorage.getItem('userId')}`, {
-            method: 'POST',
-            body: formData
-        });
-        if (response.ok) {
-            const result = await response.json();
-            setShowModal(false);
-        } else {
-            console.error('Failed to create event');
-        }
-    } catch (error) {
-        console.error('Error:', error);
+  
+    if (updatedEventData.imageUrl instanceof File) {
+      console.log('Appending file:', updatedEventData.imageUrl); // Debugging statement
+      formData.append("file", updatedEventData.imageUrl);
     }
-
-    window.location.reload();
+  
+    try {
+      const response = await fetch(`http://localhost:8080/api/events/${eventId}`, {
+          method: 'PUT',
+          body: formData
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Event updated:', result);
+        setShowModal(false);
+      } else {
+        console.error('Failed to update event:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+    window.location.reload()
   };
 
   return (
-    <div className={`modal fade ${showModal ? 'show d-block' : ''}`} id="staticBackdrop" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    updatedEventData.name && <div className={`modal fade ${showModal ? 'show d-block' : ''}`} id="staticBackdrop" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="staticBackdropLabel">Add New Event</h5>
+            <h5 className="modal-title" id="staticBackdropLabel">Update Event</h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setShowModal(false)}></button>
           </div>
           <div className="modal-body">
@@ -92,7 +105,7 @@ export const Modal = ({ showModal, setShowModal, userId }) => {
                   id="name"
                   name="name"
                   placeholder="Event Name"
-                  value={eventData.name}
+                  value={updatedEventData.name || ''}
                   onChange={handleChange}
                   required
                 />
@@ -101,8 +114,8 @@ export const Modal = ({ showModal, setShowModal, userId }) => {
                 <label htmlFor="description" className="form-label">Description</label>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={eventData.description}
-                  onChange={handleCKEditorChange}
+                  data={updatedEventData.description || ''}
+                  onChange={handleEditorChange}
                 />
               </div>
               <div className="mb-3">
@@ -113,7 +126,7 @@ export const Modal = ({ showModal, setShowModal, userId }) => {
                   id="date"
                   name="date"
                   placeholder="YYYY-MM-DD"
-                  value={eventData.date}
+                  value={updatedEventData.date || ''}
                   onChange={handleChange}
                   required
                 />
@@ -126,7 +139,7 @@ export const Modal = ({ showModal, setShowModal, userId }) => {
                   id="location"
                   name="location"
                   placeholder="Event Location"
-                  value={eventData.location}
+                  value={updatedEventData.location || ''}
                   onChange={handleChange}
                   required
                 />
@@ -139,7 +152,7 @@ export const Modal = ({ showModal, setShowModal, userId }) => {
                   id="category"
                   name="category"
                   placeholder="Event Category"
-                  value={eventData.category}
+                  value={updatedEventData.category || ''}
                   onChange={handleChange}
                   required
                 />
@@ -153,12 +166,11 @@ export const Modal = ({ showModal, setShowModal, userId }) => {
                   name="imageUrl"
                   placeholder="Upload Event Image"
                   onChange={handleImage}
-                  required
                 />
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setShowModal(false)}>Close</button>
-                <button type="submit" className="btn bg-indigo text-light">Add event</button>
+                <button type="submit" className="btn bg-indigo text-light">Update Event</button>
               </div>
             </form>
           </div>

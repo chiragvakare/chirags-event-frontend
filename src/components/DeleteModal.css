@@ -1,0 +1,100 @@
+/* DeleteModal.css */
+
+.modal-class {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    position: fixed; /* Use fixed positioning to cover the entire viewport */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1050; /* Ensure it's above other content */
+}
+
+.modal-class-dialog {
+    width: 100%;
+    max-width: 500px; /* Adjust based on your needs */
+    margin-top: 20%;
+    margin-left: 40%;
+
+}
+
+.modal-class-content {
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.modal-class-header {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-class-title {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.close {
+    font-size: 24px;
+    line-height: 1;
+    color: #000;
+}
+
+.modal-class-body {
+    padding: 15px;
+}
+
+.modal-class-footer {
+    padding: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    text-align: center;
+    border: 3px solid #f15e5e;
+}
+
+.icon-box i {
+    color: #f15e5e;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 13px;
+}
+
+.btn {
+    color: #fff;
+    /* background: #60c7c1; */
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    min-width: 120px;
+    border: none;
+    min-height: 40px;
+    border-radius: 3px;
+    margin: 0 5px;
+}
+
+.btn-secondary {
+    background: #c1c1c1;
+}
+
+.btn-secondary:hover {
+    background: #a8a8a8;
+}
+
+.btn-danger {
+    background: #f15e5e;
+}
+
+.btn-danger:hover {
+    background: #ee3535;
+}

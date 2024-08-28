@@ -28,6 +28,33 @@
   color: #61dafb;
 }
 
+.bg-indigo {
+  background-color: lightgreen; /* Indigo color */
+}
+
+.custom-btn {
+  position: relative;
+  text-decoration: none;
+}
+
+.custom-btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor; /* Uses the current text color */
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.custom-btn:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +62,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.content h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.accordion-button {
+  font-weight: bold;
+  color: #000; /* Text color */
+}
+
+.accordion-button::after {
+  filter: invert(1); /* To adjust arrow icon color */
+}
+
+.btn-outline-dark {
+  border-color: #000;
+  color: #000;
 }

@@ -1,0 +1,96 @@
+.bringToTable-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    font-family: "Cinzel";
+    height: 900px;
+  }
+  
+  .bringToTable-image-content img {
+    width: 550px;
+    height: 550px;
+    margin-right: 205px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .bringToTable-image-content.active img {
+    transform: scale(1.1);
+  }
+  
+  .bringToTable-written-content h2 {
+    font-size: 34px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: .03em;
+    font-family: 'Cinzel';
+    color: #001740;
+    padding-bottom: 42px;
+    margin-left: -60px;
+  }
+  
+  .bringToTable-written-content {
+    margin-right: 100px;
+    width: 550px;
+    padding-bottom: 20px;
+  }
+  
+  .bringToTable-dropdown-item {
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #6b6b6b;
+  }
+  
+  .bringToTable-dropdown-title {
+    cursor: pointer;
+    font-size: 22px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 3px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .bringToTable-dropdown-content {
+    margin: 10px 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    visibility: hidden;
+    font-size: 20px;
+  }
+  
+  .bringToTable-dropdown-item.active .bringToTable-dropdown-content {
+    max-height: 500px;
+    padding: 10px;
+    visibility: visible;
+  }
+  
+  .bringToTable-learnMore-button {
+    padding: 10px 20px;
+    font-size: 1.125rem;
+    color: #333;
+    background-color: transparent;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 20px;
+  }
+  
+  .bringToTable-learnMore-button:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .bringToTable-arrow {
+    font-size: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .bringToTable-arrow.open {
+    transform: rotate(180deg);
+  }
+  

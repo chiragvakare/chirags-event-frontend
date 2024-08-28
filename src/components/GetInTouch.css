@@ -1,0 +1,87 @@
+.getintouch-container {
+    display: flex;
+    padding: 20px;
+    background-color: #f8f8f8;
+    font-family: 'Cinzel', sans-serif;
+    height: 700px;
+}
+
+.getintouch-left-image img {
+    width: 1000px;
+    height: 570px;
+    margin-left: -20px;
+}
+
+.getintouch-right-content {
+    box-shadow: #413f3f;
+    background-color: #fff;
+    height: 450px;
+    width: 1300px;
+    padding: 70px;
+    margin-top: 60px;
+    margin-left: -120px;
+    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2), 4px 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 1;
+}
+
+.getintouch-right-head {
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: .13em;
+    font-size: 50px;
+    font-family: 'Cinzel';
+    margin-bottom: 10px;
+}
+
+.getintouch-subtitle {
+    display: block;
+    font-size: 1.5rem;
+    letter-spacing: .13em;
+    color: #666;
+    font-family: 'Cinzel';
+    margin-bottom: 20px;
+}
+
+.getintouch-form-group {
+    margin-bottom: 20px;
+}
+
+.getintouch-form-group label {
+    display: block;
+    font-size: 1rem;
+    color: #413f3f;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.getintouch-right-inp {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.getintouch-right-button {
+    width: 30%;
+    padding: 15px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: #97b0a6;
+    color: #fff;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.getintouch-right-button.secondary {
+    background-color: #aabfb8;
+}
+
+.getintouch-right-button:hover {
+    background-color: #89a295;
+}
+
+.getintouch-right-button.secondary:hover {
+    background-color: #91ada2;
+}

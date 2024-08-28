@@ -1,19 +1,19 @@
-import { BrowserRouter, Route , Routes } from "react-router-dom";
-import { Navbar } from "./Navbar";
-import { Login } from "./Login";
-import { Register } from "./Register";
 import { Card } from "./Card";
+import { Banner } from "./Banner";
+import { CuratedEvents } from "./CuratedEvents";
+import { BringToTable } from "./BringToTable";
+import { PrintAndReview } from "./PrintAndReview";
+import { GetInTouch } from "./GetInTouch";
 
 export const Home = () => {
+   const user = localStorage.getItem('username');
 
     return <>
-    <>
-      <Navbar />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
+      <Banner />
+      <CuratedEvents/>
+      <BringToTable/>
       <Card/>
-    </>
-    </>
-}
+      <PrintAndReview/>
+      <GetInTouch/>
+      
+    </>}
