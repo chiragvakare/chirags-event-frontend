@@ -36,7 +36,7 @@ export const Card = ({ myEvent }) => {
   const fetchUserInfo = async (username) => {
     try {
       const response = await fetch(
-        `chirags-event-backend-production.up.railway.app/api/auth/user/${username}`
+        `https://chirags-event-backend-production.up.railway.app//api/auth/user/${username}`
       );
       if (response.ok) {
         const user = await response.json();
@@ -51,7 +51,7 @@ export const Card = ({ myEvent }) => {
 
   const fetchAllEvents = async () => {
     try {
-      const response = await fetch("chirags-event-backend-production.up.railway.app/api/events/all");
+      const response = await fetch("https://chirags-event-backend-production.up.railway.app//api/events/all");
       if (response.ok) {
         const events = await response.json();
         setAllEvents(events);
@@ -66,7 +66,7 @@ export const Card = ({ myEvent }) => {
   const fetchUserEvents = async (userId) => {
     try {
       const response = await fetch(
-        `chirags-event-backend-production.up.railway.app/api/events/user/${userId}`
+        `https://chirags-event-backend-production.up.railway.app//api/events/user/${userId}`
       );
       if (response.ok) {
         const createdEvents = await response.json();
@@ -90,7 +90,7 @@ export const Card = ({ myEvent }) => {
 
   const handleUpdate = async (eventId, updatedEvent) => {
     try {
-      const response = await fetch(`chirags-event-backend-production.up.railway.app/api/events/${eventId}`, {
+      const response = await fetch(`https://chirags-event-backend-production.up.railway.app//api/events/${eventId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ export const Card = ({ myEvent }) => {
   const handleDelete = async () => {
     if (currentEvent) {
       try {
-        const response = await fetch(`chirags-event-backend-production.up.railway.app/api/events/${currentEvent.id}`, {
+        const response = await fetch(`https://chirags-event-backend-production.up.railway.app//api/events/${currentEvent.id}`, {
           method: "DELETE",
         });
 
@@ -151,7 +151,7 @@ export const Card = ({ myEvent }) => {
 
     try {
       const response = await fetch(
-        "chirags-event-backend-production.up.railway.app/api/events/register",
+        "https://chirags-event-backend-production.up.railway.app//api/events/register",
         {
           method: "POST",
           headers: {

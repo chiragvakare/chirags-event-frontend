@@ -15,7 +15,7 @@ export const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("chirags-event-backend-production.up.railway.app/api/auth/logout", {
+      const response = await fetch("https://chirags-event-backend-production.up.railway.app//api/auth/logout", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
