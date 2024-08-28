@@ -57,7 +57,7 @@ export const Modal = ({ showModal, setShowModal, userId }) => {
     formData.append("file", eventData.imageUrl);
 
     try {
-        const response = await fetch(`https://chirags-event-backend-production.up.railway.app//api/events/${localStorage.getItem('userId')}`, {
+        const response = await fetch(`https://chirags-event-backend-production.up.railway.app/api/events/${localStorage.getItem('userId')}`, {
             method: 'POST',
             body: formData
         });
